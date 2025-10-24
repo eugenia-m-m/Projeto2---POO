@@ -22,10 +22,26 @@ def menu():
         
         op = input()
         if op == '1':
-            pass
+            nome = input('Informe o seu nome completo: ').title()
+            cpf = input('Informe seu CPF: ')
+            rg = input('Informe seu RG: ')
+            id = input('Informe seu ID:')
+            data_nasc = input('Informe seu data de nascimento: ')
+            salario = input('Informe seu salário: ')
+            novo_funcionario = Funcionario(nome, cpf, rg, id, data_nasc, salario)
+            Funcionario.cadastro_funcionario.append(novo_funcionario)
+            print('Funcionário cadastrado com sucesso! Seja Bem vindo!')
+
     
         elif op == '2':
-            pass
+            nome = input('Informe o seu nome completo: ').title()
+            cpf = input('Informe seu CPF: ')
+            rg = input('Informe seu RG: ')
+            id = input('Informe seu ID: ')
+            data_nasc = input('Informe seu data de nascimento: ')
+            salario = input('Informe seu salário: ')
+            novo_gerente = Gerente(nome, cpf, rg, id, data_nasc, salario)
+            Gerente.cadastro_gerente.append(novo_gerente)
 
         elif op == '3':
             pass
