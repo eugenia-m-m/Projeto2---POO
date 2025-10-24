@@ -44,7 +44,7 @@ def menu():
             Gerente.cadastro_gerente.append(novo_gerente)
 
         elif op == '3':
-            pass
+            print(Funcionario.cadastro_funcionario)
 
         elif op == '4':
             pass
