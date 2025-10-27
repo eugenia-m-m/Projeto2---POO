@@ -73,8 +73,8 @@ class Gerente(Funcionario):
         Gerente.carregar()
 
         gerente_valido = False
-        for g in Gerente.lista_gerente:
-            if g["ID"] == gerente_id and g["Senha"] == gerente_senha:
+        for gerente in Gerente.lista_gerente:
+            if gerente["ID"] == gerente_id and gerente["Senha"] == gerente_senha:
                 gerente_valido = True
                 break
         if not gerente_valido:
