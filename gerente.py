@@ -1,30 +1,106 @@
-from funcionario import Funcionario
 import json
+from funcionario import Funcionario
 
 class Gerente(Funcionario):
-    arquivo = "gerente.json"
-    cadastro_gerente = []
-    
-    def __init__(self, nome, cargo, salario, senha, departamento):
-        super().__init__(nome, cargo, salario)
+    arquivo = "gerentes.json"
+    lista_gerente = []
+
+    def __init__(self, id, nome, cpf, email, telefone, cargo, salario, senha, departamento):
+        super().__init__(id, nome, cpf, email, telefone, cargo, salario)
         self.senha = senha
         self.departamento = departamento
 
     def autenticar(self, senha):
         return self.senha == senha
 
-    def exibir_dados(self):
-        super().exibir_dados()
-        print(f"Departamento: {self.departamento}")
+    @classmethod
+    def carregar(cls):
+        try:
+            with open(cls.arquivo, "r", encoding="utf-8") as arquivo:
+                cls.lista_gerente = json.load(arquivo)
+        except FileNotFoundError:
+            cls.lista_gerente = []
+        return cls.lista_gerente
 
-    def exibir_dados_gerente(self):
-        super().exibir_dados_gerente()
-        print(f"Departamento: {self.departamento}")
+    @classmethod
+    def salvar(cls):
+        with open(cls.arquivo, "w", encoding="utf-8") as arquivo:
+            json.dump(cls.lista_gerente, arquivo, indent=4, ensure_ascii=False)
 
-    def exibir_dados_funcionario_gerente(self):
-        super().exibir_dados_funcionario_gerente()
-        print(f"Departamento: {self.departamento}")
 
-    def exibir_dados_gerente_gerente(self):
-        super().exibir_dados_gerente_gerente()
-        print(f"Departamento: {self.departamento}")
+    @classmethod
+    def cadastrar_gerente(cls, id, nome, cpf, email, telefone, cargo, salario, senha, departamento):
+        cls.carregar()
+        for gerente in cls.lista_gerente:
+            if gerente["ID"] == id:
+                return "⚠️ ID de gerente já cadastrado."
+
+        novo_gerente = {
+            "ID": id,
+            "Nome": nome,
+            "CPF": cpf,
+            "Email": email,
+            "Telefone": telefone,
+            "Cargo": cargo,
+            "Salario": float(salario),
+            "Senha": senha,
+            "Departamento": departamento
+        }
+
+        cls.lista_gerente.append(novo_gerente)
+        cls.salvar()
+        return "✅ Gerente cadastrado com sucesso."
+
+    @classmethod
+    def alterar_senha(cls, id_gerente, senha_antiga, nova_senha):
+        cls.carregar()
+        for gerente in cls.lista_gerente:
+            if gerente["ID"] == id_gerente:
+                if gerente["Senha"] != senha_antiga:
+                    return "❌ Senha atual incorreta."
+                if nova_senha == senha_antiga:
+                    return "⚠️ A nova senha não pode ser igual à antiga."
+                
+                gerente["Senha"] = nova_senha
+                cls.salvar()
+                return "🔑 Senha alterada com sucesso!"
+        return "⚠️ Gerente não encontrado."
+    
+    @classmethod
+    def aumentar_salario(cls, gerente_id, gerente_senha):
+        from gerente import Gerente
+        cls.carregar()
+        Gerente.carregar()
+
+        gerente_valido = False
+        for g in Gerente.lista_gerente:
+            if g["ID"] == gerente_id and g["Senha"] == gerente_senha:
+                gerente_valido = True
+                break
+        if not gerente_valido:
+            return "❌ Apenas gerentes podem aumentar salários."
+        
+        if not cls.lista_funcionario:
+            return "⚠️ Nenhum funcionário cadastrado."
+
+        id_funcionario = input("Digite o ID do funcionário: ")  # Pergunta qual funcionário terá o aumento
+        percentual = float(input("Digite o percentual de aumento (%): "))
+
+        for func in cls.lista_funcionario: # Procura o funcionário e aumenta o salário
+            if func["ID"] == id_funcionario:
+                aumento = func["Salario"] * (percentual / 100)
+                func["Salario"] += aumento
+                cls.salvar()
+                return f"💰 Salário de {func['Nome']} aumentado em {percentual}% (Novo: R${func['Salario']:.2f})"
+        return "⚠️ Funcionário não encontrado."
+
+
+    @classmethod
+    def excluir_gerente(cls, id_gerente):
+        cls.carregar()
+        for gerente in cls.lista_gerente:
+            if gerente["ID"] == id_gerente:
+                cls.lista_gerente.remove(gerente)
+                cls.salvar()
+                return "✅ Gerente excluído com sucesso."
+        return "⚠️ Gerente não encontrado."
