@@ -72,9 +72,10 @@ def menu():
             print(Gerente.excluir_gerente(id))
 
         elif op == 8:
-            id = input("ID do funcionário: ")
-            percentual = float(input("Percentual de aumento (%): "))
-            print(Funcionario.aumentar_salario(id, percentual))
+            gerente_id = input("Digite seu ID de gerente: ")
+            gerente_senha = input("Digite sua senha: ")
+            print(Funcionario.aumentar_salario(gerente_id, gerente_senha))
+
 
         elif op == 9:
             id = input("ID do gerente: ")
