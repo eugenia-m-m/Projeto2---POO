@@ -1,83 +1,93 @@
 from funcionario import Funcionario
 from gerente import Gerente
 
-
 def menu():
     while True:
-        print(""" 
+        print("""
         ------------- MENU -------------
-            
-            1 - CADASTRAR FUNCIONÁRIO 📃
-            2 - CADASTRAR GERENTE 📃
-            3 - LISTAR FUNCIONÁRIOS ✍
-            4 - PESQUISAR FUNCIONÁRIO 🔍
-            5 - ALTERAR SALÁRIO DE FUNCIONÁRIO 💰
-            6 - ALTERAR SENHA DE GERENTE 💰
-            7 - EDITAR DADOS DE FUNCIONÁRIO 📝
-            8 - EDITAR DADOS DE GERENTE 📝
-            9 - REMOVER FUNCIONÁRIO 📌
-            10 - REMOVER GERENTE 📌
-            0 - SAIR ❌
-    """)
-        
-        op = input()
-        if op == '1':
-            nome = input('Informe o seu nome completo: ').title()
-            cpf = input('Informe seu CPF: ')
-            rg = input('Informe seu RG: ')
-            id = input('Informe seu ID:')
-            data_nasc = input('Informe seu data de nascimento: ')
-            salario = input('Informe seu salário: ')
-            novo_funcionario = Funcionario(nome, cpf, rg, id, data_nasc, salario)
-            Funcionario.cadastro_funcionario.append(novo_funcionario)
-            print('Funcionário cadastrado com sucesso! Seja Bem vindo!')
+        1 - Cadastrar Funcionário 📃
+        2 - Cadastrar Gerente 📃
+        3 - Listar Funcionários ✍
+        4 - Pesquisar Funcionário 🔍
+        5 - Editar Funcionário 📝
+        6 - Excluir Funcionário 📌
+        7 - Excluir Gerente 📌
+        8 - Aumentar Salário 💰
+        9 - Alterar Senha de Gerente 🔐
+        0 - Sair ❌
+        """)
 
-    
-        elif op == '2':
-            nome = input('Informe o seu nome completo: ').title()
-            cpf = input('Informe seu CPF: ')
-            rg = input('Informe seu RG: ')
-            id = input('Informe seu ID: ')
-            data_nasc = input('Informe seu data de nascimento: ')
-            salario = input('Informe seu salário: ')
-            novo_gerente = Gerente(nome, cpf, rg, id, data_nasc, salario)
-            Gerente.cadastro_gerente.append(novo_gerente)
+        op = int(input("Escolha uma opção: "))
 
-        elif op == '3':
-            print(Funcionario.cadastro_funcionario)
+        if op == 1:
+            id = input("ID: ")
+            nome = input("Nome completo: ").title()
+            cpf = input("CPF: ")
+            email = input("Email: ")
+            telefone = input("Telefone: ")
+            cargo = input("Cargo: ")
+            salario = float(input("Salário: "))
 
-        elif op == '4':
-            pass
+            msg = Funcionario.cadastrar_funcionario(id, nome, cpf, email, telefone, cargo, salario)
+            print(msg)
 
-        elif op == '5':
-            percentual = float(input('Digite o percentual de aumento do funcionário: '))
-            print("")
+        elif op == 2:
+            id = input("ID: ")
+            nome = input("Nome completo: ").title()
+            cpf = input("CPF: ")
+            email = input("Email: ")
+            telefone = input("Telefone: ")
+            cargo = input("Cargo: ")
+            salario = float(input("Salário: "))
+            senha = input("Senha: ")
+            departamento = input("Departamento: ")
 
-        elif op == '6':
-            pass
+            msg = Gerente.cadastrar_gerente(id, nome, cpf, email, telefone, cargo, salario, senha, departamento)
+            print(msg)
 
-        elif op == '7':
-            pass
+        elif op == 3:
+            Funcionario.listar_funcionario()
 
-        elif op == '8': 
-            pass
 
-        elif op == '9':
-            pass
+        elif op == 4:
+            termo = input("Digite o nome, CPF ou ID do funcionário: ")
+            print(Funcionario.pesquisar_funcionario(termo))
 
-        elif op == '10':
-            pass                                                                                   
+        elif op == 5:
+            id = input("ID do funcionário: ")
+            novo_nome = input("Novo nome: ")
+            novo_cpf = input("Novo CPF: ")
+            novo_email = input("Novo email: ")
+            novo_telefone = input("Novo telefone: ")
+            novo_cargo = input("Novo cargo: ")
+            novo_salario = float(input("Novo salário: "))
+            print(Funcionario.editar_funcionario(id, novo_nome, novo_cpf, novo_email, novo_telefone, novo_cargo, novo_salario))
 
-        elif op == '11':                                                                            
-            pass        
+        elif op == 6:
+            id = input("ID do funcionário: ")
+            print(Funcionario.excluir_funcionario(id))
 
-        elif op == '0':
-            print('Sair')
+        elif op == 7:
+            id = input("ID do gerente: ")
+            print(Gerente.excluir_gerente(id))
+
+        elif op == 8:
+            id = input("ID do funcionário: ")
+            percentual = float(input("Percentual de aumento (%): "))
+            print(Funcionario.aumentar_salario(id, percentual))
+
+        elif op == 9:
+            id = input("ID do gerente: ")
+            senha_atual = input("Senha atual: ")
+            nova_senha = input("Nova senha: ")
+            print(Gerente.alterar_senha(id, senha_atual, nova_senha))
+
+        elif op == 0:
+            print("Volte sempre! 🤝")
             break
 
         else:
-            print('Opção inválida. Tente novamente!')
-
+            print("❌ Opção inválida. Tente novamente!")
 
 
 if __name__ == "__main__":
