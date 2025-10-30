@@ -74,7 +74,7 @@ def menu():
         elif op == 8:
             gerente_id = input("Digite seu ID de gerente: ")
             gerente_senha = input("Digite sua senha: ")
-            print(Funcionario.aumentar_salario(gerente_id, gerente_senha))
+            print(Gerente.aumentar_salario(gerente_id, gerente_senha))
 
 
         elif op == 9:
