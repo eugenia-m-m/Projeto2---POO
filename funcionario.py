@@ -13,9 +13,6 @@ class Funcionario:
         self.cargo = cargo
         self.salario = float(salario)
 
-    def __repr__(self):
-        return f"{self.id} - {self.nome} ({self.cargo}) - R${self.salario:.2f}"
-
 
     @classmethod
     def carregar(cls):
@@ -80,6 +77,7 @@ class Funcionario:
                 cls.salvar()
                 return "✅ Funcionário atualizado com sucesso."
         return "⚠️ Funcionário não encontrado."
+    
     @classmethod
     def excluir_funcionario(cls, id_funcionario):
         cls.carregar()
@@ -116,3 +114,7 @@ class Funcionario:
                 f"{'-'*30}\n"
             )
         return texto
+
+
+    def aumentar_salario():
+        print('Oi')
