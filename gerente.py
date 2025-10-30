@@ -18,7 +18,7 @@ class Gerente(Funcionario):
         try:
             with open(cls.arquivo, "r", encoding="utf-8") as arquivo:
                 cls.lista_gerente = json.load(arquivo)
-        except FileNotFoundError:
+        except FileNotFoundError:  #é criado uma lista vazia, se o arquivo não for encontrado
             cls.lista_gerente = []
         return cls.lista_gerente
 
@@ -68,29 +68,29 @@ class Gerente(Funcionario):
     
     @classmethod
     def aumentar_salario(cls, gerente_id, gerente_senha):
-        from gerente import Gerente
-        cls.carregar()
-        Gerente.carregar()
+        cls.carregar() #Carrega os dados do arquivo JSON dos funcionários
+        Funcionario.carregar() #Carrega os dados do arquivo JSON dos funcionários
 
         gerente_valido = False
         for gerente in Gerente.lista_gerente:
             if gerente["ID"] == gerente_id and gerente["Senha"] == gerente_senha:
-                gerente_valido = True
+                gerente_valido = True #Marca que o gerente foi encontrado e a senha é válida
                 break
         if not gerente_valido:
             return "❌ Apenas gerentes podem aumentar salários."
-        
-        if not cls.lista_funcionario:
+
+        id_funcionario = input("Digite o ID do funcionário: ")  #Pergunta qual funcionário terá o aumento
+
+        if not cls.lista_funcionario:  #Verifica se a lista de funcionários está vazia
             return "⚠️ Nenhum funcionário cadastrado."
 
-        id_funcionario = input("Digite o ID do funcionário: ")  # Pergunta qual funcionário terá o aumento
         percentual = float(input("Digite o percentual de aumento (%): "))
 
-        for func in cls.lista_funcionario: # Procura o funcionário e aumenta o salário
+        for func in cls.lista_funcionario: #Procura o funcionário e aumenta o salário
             if func["ID"] == id_funcionario:
                 aumento = func["Salario"] * (percentual / 100)
                 func["Salario"] += aumento
-                cls.salvar()
+                Funcionario.salvar() #Salva no novo salário do fun. no arquivo Json de funcionário
                 return f"💰 Salário de {func['Nome']} aumentado em {percentual}% (Novo: R${func['Salario']:.2f})"
         return "⚠️ Funcionário não encontrado."
 
