@@ -87,10 +87,8 @@ def menu():
             print(Gerente.alterar_senha(id, senha_atual, nova_senha))
 
         elif op == 10:
-            gerente_id = int(input('Informe o ID do gerente: '))
-            senha_gerente = int(input('Informe a senha do gerente: '))
-            departamento = input('Informe o departamento: ')
-            Departamento.relatorio(gerente_id, senha_gerente, departamento)
+            departamento = input('Informe o departamento: ').lower()
+            Departamento.relatorio(departamento)
 
         elif op == 0:
             print("Volte sempre! 🤝")
