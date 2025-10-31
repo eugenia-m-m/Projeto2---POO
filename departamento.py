@@ -25,13 +25,7 @@ class Departamento:
         gasto = 0
         cls.carregar()
 
-        gerente_valido = False
-        for gerente in Gerente.lista_gerente:
-            if gerente["ID"] == gerente_id and gerente["Senha"] == gerente_senha:
-                gerente_valido = True #Marca que o gerente foi encontrado e a senha é válida
-                break
-        if not gerente_valido:
-            return "❌ Apenas gerentes podem aumentar salários."
+        
 
         for depart in cls.lista_depart:
             if depart[0] == departa:
