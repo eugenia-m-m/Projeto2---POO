@@ -10,12 +10,12 @@
     },
     {
         "ID": "02",
-        "Nome": "Guilherme",
-        "CPF": "000",
-        "Email": "gui@gmail.com",
-        "Telefone": "111",
+        "Nome": "Guizi",
+        "CPF": "11",
+        "Email": "g@gmail.com",
+        "Telefone": "22",
         "Cargo": "Faxineiro",
-        "Departamento": "B",
-        "Salario": 1500.0
+        "Departamento": "b",
+        "Salario": 2000.0
     }
 ]
