@@ -21,21 +21,21 @@ class Departamento:
             json.dump(cls.lista_depart, arquivo, indent=4, ensure_ascii=False)
 
     @classmethod
-    def relatorio (cls, departa, gerente_id, gerente_senha):
+    def relatorio (cls, departa):
         gasto = 0
         cls.carregar()
 
-        
-
-        for depart in cls.lista_depart:
+        for depart in cls.lista_depart: #Tá funcionando
             if depart[0] == departa:
-                for func in cls.carregar():   
-                    func["Salário"] += gasto
-                    print(gasto)
-                    cls.salvar()
+                for func in Funcionario.carregar():
+                        if departa == func["Departamento"]:
+                            gasto += func["Salario"]
+                            print(gasto)
+
+        for depart in cls.lista_depart: #Tá funcionando
+            if depart[1] == departa:
+                for func in Funcionario.carregar():
+                        if departa == func["Departamento"]:
+                            gasto += func["Salario"]
+                            print(gasto)
                 
-                
-                
-                return "🔑 Senha alterada com sucesso!"
-        return "⚠️ Gerente não encontrado."
-    
