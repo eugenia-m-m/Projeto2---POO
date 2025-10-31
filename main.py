@@ -1,5 +1,6 @@
 from funcionario import Funcionario
 from gerente import Gerente
+from departamento import Departamento
 
 def menu():
     while True:
@@ -14,6 +15,7 @@ def menu():
         7 - Excluir Gerente 📌
         8 - Aumentar Salário 💰
         9 - Alterar Senha de Gerente 🔐
+        10 - Relatório de gastos (por departamento) 💵
         0 - Sair ❌
         """)
 
@@ -26,9 +28,10 @@ def menu():
             email = input("Email: ")
             telefone = input("Telefone: ")
             cargo = input("Cargo: ")
+            departamento = input('Departamento: ')
             salario = float(input("Salário: "))
 
-            msg = Funcionario.cadastrar_funcionario(id, nome, cpf, email, telefone, cargo, salario)
+            msg = Funcionario.cadastrar_funcionario(id, nome, cpf, email, telefone, cargo, departamento, salario)
             print(msg)
 
         elif op == 2:
@@ -74,7 +77,7 @@ def menu():
         elif op == 8:
             gerente_id = input("Digite seu ID de gerente: ")
             gerente_senha = input("Digite sua senha: ")
-            print(Funcionario.aumentar_salario(gerente_id, gerente_senha))
+            print(Gerente.aumentar_salario(gerente_id, gerente_senha))
 
 
         elif op == 9:
@@ -82,6 +85,12 @@ def menu():
             senha_atual = input("Senha atual: ")
             nova_senha = input("Nova senha: ")
             print(Gerente.alterar_senha(id, senha_atual, nova_senha))
+
+        elif op == 10:
+            gerente_id = int(input('Informe o ID do gerente: '))
+            senha_gerente = int(input('Informe a senha do gerente: '))
+            departamento = input('Informe o departamento: ')
+            Departamento.relatorio(gerente_id, senha_gerente, departamento)
 
         elif op == 0:
             print("Volte sempre! 🤝")

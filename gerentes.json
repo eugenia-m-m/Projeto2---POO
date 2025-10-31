@@ -1,0 +1,13 @@
+[
+    {
+        "ID": "01",
+        "Nome": "Guilherme",
+        "CPF": "000",
+        "Email": "guiz@gmail.com",
+        "Telefone": "00",
+        "Cargo": "Gerente",
+        "Salario": 2000.0,
+        "Senha": "123",
+        "Departamento": "b"
+    }
+]

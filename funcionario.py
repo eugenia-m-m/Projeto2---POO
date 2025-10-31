@@ -4,17 +4,15 @@ class Funcionario:
     arquivo = "funcionarios.json"
     lista_funcionario = []
 
-    def __init__(self, id, nome, cpf, email, telefone, cargo, salario):
+    def __init__(self, id, nome, cpf, email, telefone, cargo, departamento, salario):
         self.id = id
         self.nome = nome
         self.cpf = cpf
         self.email = email
         self.telefone = telefone
         self.cargo = cargo
+        self.departamento = departamento
         self.salario = float(salario)
-
-    def __repr__(self):
-        return f"{self.id} - {self.nome} ({self.cargo}) - R${self.salario:.2f}"
 
 
     @classmethod
@@ -33,7 +31,7 @@ class Funcionario:
 
 
     @classmethod
-    def cadastrar_funcionario(cls, id, nome, cpf, email, telefone, cargo, salario):
+    def cadastrar_funcionario(cls, id, nome, cpf, email, telefone, cargo, departamento, salario):
         cls.carregar()
         for func in cls.lista_funcionario:
             if func["ID"] == id:
@@ -46,6 +44,7 @@ class Funcionario:
             "Email": email,
             "Telefone": telefone,
             "Cargo": cargo,
+            "Departamento": departamento,
             "Salario": float(salario)
         }
 
@@ -80,6 +79,7 @@ class Funcionario:
                 cls.salvar()
                 return "✅ Funcionário atualizado com sucesso."
         return "⚠️ Funcionário não encontrado."
+    
     @classmethod
     def excluir_funcionario(cls, id_funcionario):
         cls.carregar()
@@ -116,3 +116,7 @@ class Funcionario:
                 f"{'-'*30}\n"
             )
         return texto
+
+
+    def aumentar_salario():
+        print('Oi')
