@@ -7,5 +7,15 @@
         "Telefone": "7712345678",
         "Cargo": "Secretária",
         "Salario": 2420.0
+    },
+    {
+        "ID": "02",
+        "Nome": "Guilherme",
+        "CPF": "000",
+        "Email": "gui@gmail.com",
+        "Telefone": "111",
+        "Cargo": "Faxineiro",
+        "Departamento": "B",
+        "Salario": 1500.0
     }
 ]
