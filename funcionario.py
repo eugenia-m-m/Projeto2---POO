@@ -4,13 +4,14 @@ class Funcionario:
     arquivo = "funcionarios.json"
     lista_funcionario = []
 
-    def __init__(self, id, nome, cpf, email, telefone, cargo, salario):
+    def __init__(self, id, nome, cpf, email, telefone, cargo, departamento, salario):
         self.id = id
         self.nome = nome
         self.cpf = cpf
         self.email = email
         self.telefone = telefone
         self.cargo = cargo
+        self.departamento = departamento
         self.salario = float(salario)
 
 
@@ -30,7 +31,7 @@ class Funcionario:
 
 
     @classmethod
-    def cadastrar_funcionario(cls, id, nome, cpf, email, telefone, cargo, salario):
+    def cadastrar_funcionario(cls, id, nome, cpf, email, telefone, cargo, departamento, salario):
         cls.carregar()
         for func in cls.lista_funcionario:
             if func["ID"] == id:
@@ -43,6 +44,7 @@ class Funcionario:
             "Email": email,
             "Telefone": telefone,
             "Cargo": cargo,
+            "Departamento": departamento,
             "Salario": float(salario)
         }
 
