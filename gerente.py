@@ -91,7 +91,7 @@ class Gerente(Funcionario):
                 aumento = func["Salario"] * (percentual / 100)
                 func["Salario"] += aumento
                 Funcionario.salvar() #Salva no novo salário do fun. no arquivo Json de funcionário
-                return f"💰 Salário de {func['Nome']} aumentado em {percentual}% (Novo: R${func['Salario']:.2f})"
+                return f"💰 Salário de {func['Nome']} aumentado em {percentual}% (Novo: R${func['Salario']})"
         return "⚠️ Funcionário não encontrado."
 
 
