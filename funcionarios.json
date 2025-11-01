@@ -1,20 +1,21 @@
 [
     {
-        "ID": "01",
-        "Nome": "Eugênia M.",
-        "CPF": "012345678",
-        "Email": "eugenia123@gmail.com",
-        "Telefone": "7712345678",
-        "Cargo": "Secretária",
-        "Salario": 2420.0
-    },
-    {
         "ID": "02",
         "Nome": "Guizi",
         "CPF": "11",
         "Email": "g@gmail.com",
         "Telefone": "22",
         "Cargo": "Faxineiro",
+        "Departamento": "b",
+        "Salario": 2000.0
+    },
+    {
+        "ID": "01",
+        "Nome": "Eugênia",
+        "CPF": "123456789",
+        "Email": "eugenia12@gmail.com",
+        "Telefone": "1234567",
+        "Cargo": "Secretária",
         "Departamento": "b",
         "Salario": 2000.0
     }
