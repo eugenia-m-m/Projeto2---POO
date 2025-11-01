@@ -117,6 +117,3 @@ class Funcionario:
             )
         return texto
 
-
-    def aumentar_salario():
-        print('Oi')
