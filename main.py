@@ -1,6 +1,25 @@
 from funcionario import Funcionario
 from gerente import Gerente
 from departamento import Departamento
+import json
+
+def login():
+    print("--------- LOGIN ---------")
+    id_login = input("Digite seu ID: ")
+    nome_login = input("Digite seu nome: ")
+    funcionarios = Funcionario.carregar()
+    gerentes = Gerente.carregar()
+
+    for f in funcionarios:
+        if f["ID"] == id_login and f["Nome"] == nome_login:
+            print(f"\n✅ Bem-vindo(a), {nome_login}!")
+            return True
+
+    for g in gerentes:
+        if g["ID"] == id_login and g["Nome"] == nome_login:
+            print(f"\n✅ Bem-vindo(a), {nome_login}!")
+            return True
+    return False
 
 def menu():
     while True:
@@ -51,7 +70,6 @@ def menu():
         elif op == 3:
             Funcionario.listar_funcionario()
 
-
         elif op == 4:
             termo = input("Digite o nome, CPF ou ID do funcionário: ")
             print(Funcionario.pesquisar_funcionario(termo))
@@ -79,7 +97,6 @@ def menu():
             gerente_senha = input("Digite sua senha: ")
             print(Gerente.aumentar_salario(gerente_id, gerente_senha))
 
-
         elif op == 9:
             id = input("ID do gerente: ")
             senha_atual = input("Senha atual: ")
@@ -87,7 +104,7 @@ def menu():
             print(Gerente.alterar_senha(id, senha_atual, nova_senha))
 
         elif op == 10:
-            departamento = input('Informe o departamento: ').lower()
+            departamento = input('Informe o departamento: ').upper()
             Departamento.relatorio(departamento)
 
         elif op == 0:
@@ -97,6 +114,8 @@ def menu():
         else:
             print("❌ Opção inválida. Tente novamente!")
 
-
 if __name__ == "__main__":
-    menu()
+    if login(): 
+        menu()
+    else:
+        print("❌ Dados incorretos. Tente novamente.")
